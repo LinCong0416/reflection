@@ -6,28 +6,19 @@ import java.lang.reflect.Method;
 
 public class ClassUtil {
 	/**
-	 * ´òÓ¡ÀàµÄĞÅÏ¢£¬°üÀ¨ÀàµÄ³ÉÔ±º¯Êı¡¢³ÉÔ±±äÁ¿(Ö»»ñÈ¡³ÉÔ±º¯Êı)
-	 * @param obj ¸Ã¶ÔÏóËùÊôÀàµÄĞÅÏ¢
+	 * ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½(Ö»ï¿½ï¿½È¡ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½)
+	 * @param obj ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
 	public static void printClassMethodMessage(Object obj){
-		//Òª»ñÈ¡ÀàµÄĞÅÏ¢  Ê×ÏÈÒª»ñÈ¡ÀàµÄÀàÀàĞÍ
-		Class c = obj.getClass();//´«µİµÄÊÇÄÄ¸ö×ÓÀàµÄ¶ÔÏó  c¾ÍÊÇ¸Ã×ÓÀàµÄÀàÀàĞÍ
-		//»ñÈ¡ÀàµÄÃû³Æ
-		System.out.println("ÀàµÄÃû³ÆÊÇ:"+c.getName());
-		/*
-		 * MethodÀà£¬·½·¨¶ÔÏó
-		 * Ò»¸ö³ÉÔ±·½·¨¾ÍÊÇÒ»¸öMethod¶ÔÏó
-		 * getMethods()·½·¨»ñÈ¡µÄÊÇËùÓĞµÄpublicµÄº¯Êı£¬°üÀ¨¸¸Àà¼Ì³Ğ¶øÀ´µÄ
-		 * getDeclaredMethods()»ñÈ¡µÄÊÇËùÓĞ¸ÃÀà×Ô¼ºÉùÃ÷µÄ·½·¨£¬²»ÎÊ·ÃÎÊÈ¨ÏŞ
-		 */
-		Method[] ms = c.getMethods();//c.getDeclaredMethods()
+
+		Class c = obj.getClass();
+		System.out.println(c.getName());
+
+		Method[] ms = c.getMethods();
 		for(int i = 0; i < ms.length;i++){
-			//µÃµ½·½·¨µÄ·µ»ØÖµÀàĞÍµÄÀàÀàĞÍ
 			Class returnType = ms[i].getReturnType();
 			System.out.print(returnType.getName()+" ");
-			//µÃµ½·½·¨µÄÃû³Æ
 			System.out.print(ms[i].getName()+"(");
-			//»ñÈ¡²ÎÊıÀàĞÍ--->µÃµ½µÄÊÇ²ÎÊıÁĞ±íµÄÀàĞÍµÄÀàÀàĞÍ
 			Class[] paramTypes = ms[i].getParameterTypes();
 			for (Class class1 : paramTypes) {
 				System.out.print(class1.getName()+",");
@@ -35,47 +26,27 @@ public class ClassUtil {
 			System.out.println(")");
 		}
 	}
-    /**
-     * »ñÈ¡³ÉÔ±±äÁ¿µÄĞÅÏ¢
-     * @param obj
-     */
+
 	public static void printFieldMessage(Object obj) {
 		Class c = obj.getClass();
-		/*
-		 * ³ÉÔ±±äÁ¿Ò²ÊÇ¶ÔÏó
-		 * java.lang.reflect.Field
-		 * FieldÀà·â×°ÁË¹ØÓÚ³ÉÔ±±äÁ¿µÄ²Ù×÷
-		 * getFields()·½·¨»ñÈ¡µÄÊÇËùÓĞµÄpublicµÄ³ÉÔ±±äÁ¿µÄĞÅÏ¢
-		 * getDeclaredFields»ñÈ¡µÄÊÇ¸ÃÀà×Ô¼ºÉùÃ÷µÄ³ÉÔ±±äÁ¿µÄĞÅÏ¢
-		 */
+
 		//Field[] fs = c.getFields();
 		Field[] fs = c.getDeclaredFields();
 		for (Field field : fs) {
-			//µÃµ½³ÉÔ±±äÁ¿µÄÀàĞÍµÄÀàÀàĞÍ
 			Class fieldType = field.getType();
 			String typeName = fieldType.getName();
-			//µÃµ½³ÉÔ±±äÁ¿µÄÃû³Æ
 			String fieldName = field.getName();
 			System.out.println(typeName+" "+fieldName);
 		}
 	}
-	/**
-	 * ´òÓ¡¶ÔÏóµÄ¹¹Ôìº¯ÊıµÄĞÅÏ¢
-	 * @param obj
-	 */
+
 	public static void printConMessage(Object obj){
 		Class c = obj.getClass();
-		/*
-		 * ¹¹Ôìº¯ÊıÒ²ÊÇ¶ÔÏó
-		 * java.lang. ConstructorÖĞ·â×°ÁË¹¹Ôìº¯ÊıµÄĞÅÏ¢
-		 * getConstructors»ñÈ¡ËùÓĞµÄpublicµÄ¹¹Ôìº¯Êı
-		 * getDeclaredConstructorsµÃµ½ËùÓĞµÄ¹¹Ôìº¯Êı
-		 */
 		//Constructor[] cs = c.getConstructors();
 		Constructor[] cs = c.getDeclaredConstructors();
 		for (Constructor constructor : cs) {
 			System.out.print(constructor.getName()+"(");
-			//»ñÈ¡¹¹Ôìº¯ÊıµÄ²ÎÊıÁĞ±í--->µÃµ½µÄÊÇ²ÎÊıÁĞ±íµÄÀàÀàĞÍ
+
 			Class[] paramTypes = constructor.getParameterTypes();
 			for (Class class1 : paramTypes) {
 				System.out.print(class1.getName()+",");
