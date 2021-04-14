@@ -21,7 +21,7 @@ public class ClassDemo1 {
 		
 
 		try {
-			Foo foo = (Foo)c1.newInstance();//��Ҫ���޲����Ĺ��췽��
+			Foo foo = (Foo)c1.newInstance();
 			foo.print();
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block

@@ -9,26 +9,21 @@ public class MethodDemo4 {
 		
 		ArrayList<String> list1 = new ArrayList<String>();
 		list1.add("hello");
-		//list1.add(20);´íÎóµÄ
+
 		Class c1 = list.getClass();
 		Class c2 = list1.getClass();
 		System.out.println(c1 == c2);
-		//·´ÉäµÄ²Ù×÷¶¼ÊÇ±àÒëÖ®ºóµÄ²Ù×÷
+
 		
-		/*
-		 * c1==c2½á¹û·µ»ØtrueËµÃ÷±àÒëÖ®ºó¼¯ºÏµÄ·ºĞÍÊÇÈ¥·ºĞÍ»¯µÄ
-		 * JavaÖĞ¼¯ºÏµÄ·ºĞÍ£¬ÊÇ·ÀÖ¹´íÎóÊäÈëµÄ£¬Ö»ÔÚ±àÒë½×¶ÎÓĞĞ§£¬
-		 * ÈÆ¹ı±àÒë¾ÍÎŞĞ§ÁË
-		 * ÑéÖ¤£ºÎÒÃÇ¿ÉÒÔÍ¨¹ı·½·¨µÄ·´ÉäÀ´²Ù×÷£¬ÈÆ¹ı±àÒë
-		 */
+
 		try {
 			Method m = c2.getMethod("add", Object.class);
-			m.invoke(list1, 20);//ÈÆ¹ı±àÒë²Ù×÷¾ÍÈÆ¹ıÁË·ºĞÍ
+			m.invoke(list1, 20);//ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¹ï¿½ï¿½Ë·ï¿½ï¿½ï¿½
 			System.out.println(list1.size());
 			System.out.println(list1);
 			/*for (String string : list1) {
 				System.out.println(string);
-			}*///ÏÖÔÚ²»ÄÜÕâÑù±éÀú
+			}*/
 		} catch (Exception e) {
 		  e.printStackTrace();
 		}
